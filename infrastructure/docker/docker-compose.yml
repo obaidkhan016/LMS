@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: rgs-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: rgs_admin
+      POSTGRES_PASSWORD: rgs_dev_password_change_me
+      POSTGRES_DB: roots_attendance
+      TZ: Asia/Karachi
+      PGTZ: Asia/Karachi
+    ports:
+      - "5432:5432"
+    volumes:
+      - rgs_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rgs_admin -d roots_attendance"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: rgs-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - rgs_redisdata:/data
+
+volumes:
+  rgs_pgdata:
+  rgs_redisdata:

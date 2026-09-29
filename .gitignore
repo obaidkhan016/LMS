@@ -1,0 +1,55 @@
+# Environment & Secrets
+.env
+.env.local
+.env.*
+.env.*.local
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+env/
+ENV/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+dist/
+build/
+.turbo/
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Uploads
+uploads/
+backups/
+*.sql
+*.sql.gz
+
+# Coverage
+coverage/
+
+# Alembic
+alembic/versions/*.pyc

@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant oled (&:where(.oled, .oled *));
+
+/* ═══════════════════════════════════════════════════════════════════
+   Raw palette (fixed values, same in every theme)
+   ═══════════════════════════════════════════════════════════════════ */
+@theme {
+  --color-brand-50:  #eff6f3;
+  --color-brand-100: #d6e7e0;
+  --color-brand-200: #aecfc3;
+  --color-brand-300: #7db0a0;
+  --color-brand-400: #4c8f7d;
+  --color-brand-500: #1f6f5c;
+  --color-brand-600: #0b4f3f;
+  --color-brand-700: #093f33;
+  --color-brand-800: #073128;
+  --color-brand-900: #05221c;
+
+  --color-sand-100: #f7f0dc;
+  --color-sand-200: #f0e2bb;
+  --color-sand-300: #e2c98e;
+  --color-sand-400: #d4b877;
+  --color-sand-500: #c9a961;
+  --color-sand-600: #a88a45;
+  --color-sand-700: #8d7638;
+
+  --color-ink-50:  #f7f8f8;
+  --color-ink-100: #eceeef;
+  --color-ink-200: #d7dbdd;
+  --color-ink-300: #b3b9bd;
+  --color-ink-400: #8b9298;
+  --color-ink-500: #656c72;
+  --color-ink-600: #4a5055;
+  --color-ink-700: #343a3e;
+  --color-ink-800: #23282b;
+  --color-ink-900: #14171a;
+
+  --color-danger: #dc2626;
+  --color-danger-bg: #fee2e2;
+  --color-success: #16a34a;
+  --color-success-bg: #dcfce7;
+  --color-warning: #d97706;
+  --color-warning-bg: #fef3c7;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Semantic tokens — these flip per theme
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── LIGHT ─────────────────────────────────────────────────────── */
+:root,
+html.light {
+  --surface: #ffffff;             /* cards, dialogs, topbar, sidebar */
+  --surface-elevated: #ffffff;    /* modals sitting above cards */
+  --surface-sunken: #f7f8f8;      /* page background */
+  --surface-inset: #eceeef;       /* input bg, table header */
+  --surface-hover: #f2f4f5;       /* row hover, ghost button hover */
+
+  --line: #d7dbdd;
+  --line-soft: #e9ecee;
+
+  --fg: #14171a;
+  --fg-muted: #656c72;
+  --fg-subtle: #8b9298;
+  --fg-inverse: #ffffff;
+
+  --primary: #0b4f3f;
+  --primary-hover: #093f33;
+  --primary-active: #05221c;
+  --primary-fg: #ffffff;
+  --primary-soft: #eff6f3;
+  --primary-soft-fg: #0b4f3f;
+
+  --overlay: rgba(15, 20, 25, 0.45);
+  --scrollbar: #d7dbdd;
+  --scrollbar-track: #f7f8f8;
+}
+
+/* ── DARK ──────────────────────────────────────────────────────── */
+html.dark {
+  --surface: #131820;
+  --surface-elevated: #1a2029;
+  --surface-sunken: #0a0d10;
+  --surface-inset: #0f141b;
+  --surface-hover: #1c222c;
+
+  --line: #232b36;
+  --line-soft: #1c222c;
+
+  --fg: #f0f2f3;
+  --fg-muted: #94a3b3;
+  --fg-subtle: #6b7a8e;
+  --fg-inverse: #0a0d10;
+
+  --primary: #4c8f7d;
+  --primary-hover: #5fa892;
+  --primary-active: #6cb9a3;
+  --primary-fg: #ffffff;
+  --primary-soft: #0d2a24;
+  --primary-soft-fg: #7dd3b8;
+
+  --overlay: rgba(0, 0, 0, 0.6);
+  --scrollbar: #232b36;
+  --scrollbar-track: #0a0d10;
+}
+
+/* ── OLED ──────────────────────────────────────────────────────── */
+html.oled {
+  --surface: #000000;
+  --surface-elevated: #0a0a0a;
+  --surface-sunken: #000000;
+  --surface-inset: #0a0a0a;
+  --surface-hover: #111111;
+
+  --line: #1f1f1f;
+  --line-soft: #141414;
+
+  --fg: #ffffff;
+  --fg-muted: #a3a3a3;
+  --fg-subtle: #6b6b6b;
+  --fg-inverse: #000000;
+
+  --primary: #4c8f7d;
+  --primary-hover: #5fa892;
+  --primary-active: #6cb9a3;
+  --primary-fg: #ffffff;
+  --primary-soft: #0a1f1a;
+  --primary-soft-fg: #7dd3b8;
+
+  --overlay: rgba(0, 0, 0, 0.85);
+  --scrollbar: #1f1f1f;
+  --scrollbar-track: #000000;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Register semantic tokens with Tailwind (inline = follow CSS cascade)
+   ═══════════════════════════════════════════════════════════════════ */
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-inset: var(--surface-inset);
+  --color-surface-hover: var(--surface-hover);
+
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-fg-inverse: var(--fg-inverse);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-fg: var(--primary-soft-fg);
+
+  --color-overlay: var(--overlay);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Base
+   ═══════════════════════════════════════════════════════════════════ */
+html, body { height: 100%; }
+
+html { color-scheme: light; }
+html.dark, html.oled { color-scheme: dark; }
+
+body {
+  background: var(--surface-sunken);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+::selection { background: var(--primary); color: var(--primary-fg); }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar);
+  border-radius: 6px;
+  border: 2px solid var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--fg-subtle); }
+
+@keyframes rgs-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rgs-fade-in { animation: rgs-fade-in 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
